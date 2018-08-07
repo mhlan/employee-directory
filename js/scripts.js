@@ -33,20 +33,23 @@ modalBG.addEventListener("click", () =>
   modalWindow.classList.remove("is-active")
 );
 
-fetch("https://randomuser.me/api/")
-  .then(checkStatus)
-  .then(res => res.json())
-  .then(data => {
-    const picture = data.results[0].picture.large;
-    const firstName = data.results[0].name.first;
-    const lastName = data.results[0].name.last;
-    const email = data.results[0].email;
-    const city = data.results[0].location.city;
-    const state = data.results[0].location.state;
+function fetchData(url) {
+  return fetch(url)
+    .then(checkStatus)
+    .then(res => res.json())
+    .catch(error => console.log("Looks like there was a problem", error));
+}
 
-    fillDirectory(firstName, lastName, picture, email, city, state);
-  })
-  .catch(error => console.log("Looks like there was a problem", error));
+fetchData("https://randomuser.me/api/").then(data => {
+  let picture = data.results[0].picture.large;
+  let firstName = data.results[0].name.first;
+  let lastName = data.results[0].name.last;
+  let email = data.results[0].email;
+  let city = data.results[0].location.city;
+  let state = data.results[0].location.state;
+
+  fillDirectory(firstName, lastName, picture, email, city, state);
+});
 
 function checkStatus(response) {
   if (response.ok === true) {
@@ -57,8 +60,10 @@ function checkStatus(response) {
 }
 
 function fillDirectory(firstName, lastName, picture, email, city, state) {
-  images[0].src = picture;
-  names[0].innerHTML = `${firstName} ${lastName}`;
-  emails[0].innerHTML = email;
-  locations[0].innerHTML = `${city}, ${state}`;
+  for (let i = 0; i < boxes.length; i++) {
+    images[i].src = picture;
+    names[i].innerHTML = `${firstName} ${lastName}`;
+    emails[i].innerHTML = email;
+    locations[i].innerHTML = `${city}, ${state}`;
+  }
 }
