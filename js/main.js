@@ -74,6 +74,10 @@ fetch("https://randomuser.me/api/?results=12&nat=us&exc=login,registered,id")
       }
     }
     boxes = document.getElementsByClassName("column");
+
+    for (let i = 0; boxes.length < i; i++) {
+      boxes[i].addEventListener("click", modalView());
+    }
   })
   .catch(error => console.log("Looks like there was a problem.", error));
 
