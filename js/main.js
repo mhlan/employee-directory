@@ -3,7 +3,7 @@
 const main = document.querySelector("#main");
 const modalWindow = document.querySelector(".modal");
 const modalBG = document.querySelector(".modal-background");
-const modalClose = document.querySelector(".modal-close");
+const modalClose = document.querySelector(".delete");
 const col1 = document.querySelector("#col-1");
 const col2 = document.querySelector("#col-2");
 const col3 = document.querySelector("#col-3");
@@ -12,9 +12,17 @@ const col4 = document.querySelector("#col-4");
 let boxes;
 
 //functions
-const createHTML = (picture, firstName, lastName, email, city, state) => {
+const createHTML = (
+  index,
+  picture,
+  firstName,
+  lastName,
+  email,
+  city,
+  state
+) => {
   let HTML = `<div class="column">
-        <div class="box">
+        <div class="box" data-id="${index}">
           <div class="media">
             <div class="media-left">
               <figure class="image is-128x128">
@@ -35,8 +43,18 @@ const createHTML = (picture, firstName, lastName, email, city, state) => {
   return HTML;
 };
 
-const writeHTML = (colNum, picture, firstName, lastName, email, city, state) =>
+const writeHTML = (
+  index,
+  colNum,
+  picture,
+  firstName,
+  lastName,
+  email,
+  city,
+  state
+) =>
   (colNum.innerHTML += createHTML(
+    index,
     picture,
     firstName,
     lastName,
@@ -64,20 +82,16 @@ fetch("https://randomuser.me/api/?results=12&nat=us&exc=login,registered,id")
       const state = capitalize(employeeData[i].location.state);
 
       if (i < 3) {
-        writeHTML(col1, picture, firstName, lastName, email, city, state);
+        writeHTML(i, col1, picture, firstName, lastName, email, city, state);
       } else if (i < 6) {
-        writeHTML(col2, picture, firstName, lastName, email, city, state);
+        writeHTML(i, col2, picture, firstName, lastName, email, city, state);
       } else if (i < 9) {
-        writeHTML(col3, picture, firstName, lastName, email, city, state);
+        writeHTML(i, col3, picture, firstName, lastName, email, city, state);
       } else if (i < 12) {
-        writeHTML(col4, picture, firstName, lastName, email, city, state);
+        writeHTML(i, col4, picture, firstName, lastName, email, city, state);
       }
     }
-    boxes = document.getElementsByClassName("column");
-
-    for (let i = 0; boxes.length < i; i++) {
-      boxes[i].addEventListener("click", modalView());
-    }
+    boxes = document.querySelectorAll(".column");
   })
   .catch(error => console.log("Looks like there was a problem.", error));
 
@@ -89,23 +103,14 @@ function checkStatus(response) {
   }
 }
 
-const modalView = () => modalWindow.classList.add("is-active");
-
 //event listeners
 
-// main.addEventListener("click", e => {
-//   console.log(this);
-//   let selection = e.target.classList.value;
-//   if (
-//     selection === "box" ||
-//     selection === "img is-rounded" ||
-//     selection === "subtitle is-3" ||
-//     selection === "email" ||
-//     selection === "location"
-//   ) {
-//     modalWindow.classList.add("is-active");
-//   }
-// });
+main.addEventListener("click", e => {
+  if (e.target.closest(".box")) {
+    console.log(e.target.closest(".box"));
+    modalWindow.classList.add("is-active");
+  }
+});
 
 //closes modal window on clicking "x" button
 modalClose.addEventListener("click", () =>

@@ -23,3 +23,45 @@ p.subtitle.is-4 {
   margin-top: 0.8rem;
   margin-left: 1rem;
 }
+
+.is-centered {
+  display: block;
+  margin: auto;
+}
+
+.employee-modal-card {
+  background-color: white;
+  border-radius: 8px;
+  width: 375px;
+  height: 450px;
+  margin: auto;
+}
+
+.delete {
+  margin: 5px 5px 0 0;
+}
+
+.card-inner-container {
+  margin: auto;
+  padding-top: 25px;
+  text-align: center;
+  width: 75%;
+  height: 90%;
+}
+
+.card-inner-container,
+p.subtitle.is-4 {
+  margin-top: 15px;
+}
+
+hr.hr-style {
+  border-top: 1px solid #8c8b8b;
+  opacity: 0.25;
+}
+
+@media only screen and (max-width: 500px) {
+  .employee-modal-card {
+    width: 350px;
+    height: 450px;
+  }
+}
