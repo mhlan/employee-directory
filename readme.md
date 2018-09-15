@@ -15,12 +15,12 @@
 
 ###### Modal Window - Modal window displays at least the following details:
 
-- [ ] Employee image
-- [ ] Name
-- [ ] Email
-- [ ] City or location
-- [ ] Cell Number
-- [ ] Detailed Address, including street name and number, state or country, and post code.
+- [x] Employee image
+- [x] Name
+- [x] Email
+- [x] City or location
+- [x] Cell Number
+- [x] Detailed Address, including street name and number, state or country, and post code.
 - [x] There is a way to close the modal window
 - [ ] Exceeds: Functionality has been added to switch back and forth between employees when the detail modal window is open.
 
