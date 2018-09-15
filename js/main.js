@@ -124,7 +124,7 @@ main.addEventListener("click", e => {
         )} ${capitalize(employeeData[i].name.last)}`;
         modalEmail.innerHTML = employeeData[i].email;
         modalCity.innerHTML = capitalize(employeeData[i].location.city);
-        modalPhone.innerHTML = employeeData[i].phone;
+        modalPhone.innerHTML = employeeData[i].cell;
         modalAddress.innerHTML = `${employeeData[i].location.street}, ${
           employeeData[i].location.state
         } ${employeeData[i].location.postcode}`;
