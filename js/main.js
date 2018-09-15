@@ -9,7 +9,7 @@ const col2 = document.querySelector("#col-2");
 const col3 = document.querySelector("#col-3");
 const col4 = document.querySelector("#col-4");
 
-let boxes;
+let employeeData, boxes;
 
 //functions
 const createHTML = (
@@ -70,7 +70,7 @@ fetch("https://randomuser.me/api/?results=12&nat=us&exc=login,registered,id")
   .then(checkStatus)
   .then(res => res.json())
   .then(data => {
-    const employeeData = data.results;
+    employeeData = data.results;
     const employeeCount = employeeData.length;
 
     for (let i = 0; i < employeeCount; i++) {
@@ -107,7 +107,15 @@ function checkStatus(response) {
 
 main.addEventListener("click", e => {
   if (e.target.closest(".box")) {
-    console.log(e.target.closest(".box"));
+    let employeeBoxNumber = e.target.closest(".box").getAttribute("data-id");
+    console.log(employeeBoxNumber);
+    for (let i = 0; i < employeeData.length; i++) {
+      if ((employeeBoxNumber = employeeData[i])) {
+        document
+          .querySelector("#modal-img")
+          .setAttribute("src", `${employeeData[i].picture.large}`);
+      }
+    }
     modalWindow.classList.add("is-active");
   }
 });
