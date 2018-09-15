@@ -4,6 +4,13 @@ const main = document.querySelector("#main");
 const modalWindow = document.querySelector(".modal");
 const modalBG = document.querySelector(".modal-background");
 const modalClose = document.querySelector(".delete");
+const modalImg = document.querySelector("#modal-img");
+const modalName = document.querySelector("#modal-name");
+const modalEmail = document.querySelector("#modal-email");
+const modalCity = document.querySelector("#modal-city");
+const modalPhone = document.querySelector("#modal-phone");
+const modalAddress = document.querySelector("#modal-address");
+const modalDOB = document.querySelector("#modal-dob");
 const col1 = document.querySelector("#col-1");
 const col2 = document.querySelector("#col-2");
 const col3 = document.querySelector("#col-3");
@@ -110,10 +117,18 @@ main.addEventListener("click", e => {
     let employeeBoxNumber = e.target.closest(".box").getAttribute("data-id");
     console.log(employeeBoxNumber);
     for (let i = 0; i < employeeData.length; i++) {
-      if ((employeeBoxNumber = employeeData[i])) {
-        document
-          .querySelector("#modal-img")
-          .setAttribute("src", `${employeeData[i].picture.large}`);
+      if (i == employeeBoxNumber) {
+        modalImg.setAttribute("src", `${employeeData[i].picture.large}`);
+        modalName.innerText = `${capitalize(
+          employeeData[i].name.first
+        )} ${capitalize(employeeData[i].name.last)}`;
+        modalEmail.innerHTML = employeeData[i].email;
+        modalCity.innerHTML = capitalize(employeeData[i].location.city);
+        modalPhone.innerHTML = employeeData[i].phone;
+        modalAddress.innerHTML = `${employeeData[i].location.street}, ${
+          employeeData[i].location.state
+        } ${employeeData[i].location.postcode}`;
+        modalDOB.innerHTML = employeeData[i].dob.date;
       }
     }
     modalWindow.classList.add("is-active");
