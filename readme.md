@@ -11,7 +11,6 @@
 - [x] First and Last Name
 - [x] Email
 - [x] City or location
-- [ ] Exceeds: Employees can be filtered by name or username
 
 ###### Modal Window - Modal window displays at least the following details:
 
@@ -22,7 +21,6 @@
 - [x] Cell Number
 - [x] Detailed Address, including street name and number, state or country, and post code.
 - [x] There is a way to close the modal window
-- [ ] Exceeds: Functionality has been added to switch back and forth between employees when the detail modal window is open.
 
 ###### Matching the Mockups
 
